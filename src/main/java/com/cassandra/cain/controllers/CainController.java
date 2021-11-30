@@ -1,6 +1,7 @@
 package com.cassandra.cain.controllers;
 
 import java.util.List;
+import java.util.UUID;
 
 import com.cassandra.cain.dtos.StandDto;
 import com.cassandra.cain.entity.Stands;
@@ -48,17 +49,25 @@ public class CainController {
         return standsRepository.findAll(CassandraPageRequest.first(10)).toList();
     }
 
-    @DeleteMapping("/{id}")
-    public String deleteById(@PathVariable String id) {
-        standsRepository.deleteById(id);
-        return id;
-    }
+    // @DeleteMapping("/{id}")
+    // public String deleteById(@PathVariable String id) {
+    // UUID uid = UUID.fromString(id);
+    // standsRepository.delete(uid);
+
+    // return id;
+    // }
 
     @GetMapping("/datacenter")
     public String datacenter() {
         return cassandraTemplate
                 .getCqlOperations()
                 .queryForObject("SELECT data_center FROM system.local", String.class);
+    }
+
+    @GetMapping("/{id}")
+    public Stands findStandById(@PathVariable String id) {
+        return cassandraTemplate.getCqlOperations().queryForObject("SELECT * FROM stands where uid = ? ", Stands.class,
+                id);
     }
 
 }
