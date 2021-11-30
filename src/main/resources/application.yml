@@ -1,5 +1,21 @@
+management:
+  server:
+    port: 9001
+    address: 127.0.0.1
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
 astra:
   application-token: ${ASTRA_TOKEN}
   database-id: ${DB_ID}
   database-region: ${DB_REGION}
   keyspace: ${KEY_SPACE}
+  metrics:
+    enabled: true
+
+spring:
+  data:
+    cassandra:
+      schema-action: CREATE_IF_NOT_EXISTS
