@@ -1,0 +1,5 @@
+astra:
+  application-token: ${ASTRA_TOKEN}
+  database-id: ${DB_ID}
+  database-region: ${DB_REGION}
+  keyspace: ${KEY_SPACE}

@@ -10,12 +10,17 @@ sourceCompatibility = '17'
 
 repositories {
 	mavenCentral()
+	mavenLocal()
+
 }
+
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'com.datastax.astra:astra-spring-boot-starter:0.2.1'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	implementation 'org.springframework.boot:spring-boot-starter-data-cassandra'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
